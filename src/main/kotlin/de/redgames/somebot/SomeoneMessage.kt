@@ -3,7 +3,7 @@ package de.redgames.somebot
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Member
-import net.dv8tion.jda.api.entities.TextChannel
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel
 import java.awt.Color
 import java.util.*
 
@@ -30,16 +30,15 @@ object SomeoneMessage {
             .filter { it != sender }
             .toMutableList()
 
-        println(members)
-
         val random = Random()
         val member = members[random.nextInt(members.size)]
 
         val embedBuilder = EmbedBuilder()
+
         embedBuilder.setAuthor(sender.effectiveName)
         embedBuilder.setDescription("${channel.jda.selfUser.asMention} **${generateSmiley(random)}** ${member.asMention}")
         embedBuilder.setColor(Color(random.nextInt(256), random.nextInt(256), random.nextInt(256)))
 
-        channel.sendMessage(embedBuilder.build()).queue()
+        channel.sendMessageEmbeds(embedBuilder.build()).queue()
     }
 }

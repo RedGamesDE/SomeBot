@@ -8,9 +8,14 @@ import net.dv8tion.jda.api.requests.GatewayIntent
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-private const val token = "NDgzMjE4MzE2NjIyODIzNDM0.DmQP1g.hmfdCi1L5QO69f1uoWmxCrQgXrw"
-
 fun main() {
+    val token = System.getenv("BOT_TOKEN")
+
+    if (token == null) {
+        System.err.println("Environment variable BOT_TOKEN must be set to the bot token!")
+        return
+    }
+
     val jda = JDABuilder.create(GatewayIntent.getIntents(GatewayIntent.ALL_INTENTS))
         .setToken(token)
         .setAutoReconnect(true)
@@ -26,7 +31,7 @@ fun main() {
 
     BufferedReader(InputStreamReader(System.`in`)).use {
         while (true) {
-            when (it.readLine().toLowerCase()) {
+            when (it.readLine().lowercase()) {
                 "shutdown", "stop" -> break
                 "servercount" -> println("[*] Running on ${bot.countServers()} servers!")
                 "help" -> println("[*] Available commands: shutdown, servercount")
