@@ -1,0 +1,36 @@
+plugins {
+    id 'idea'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.32'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+group 'de.redgames'
+version '1.0'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://m2.dv8tion.net/releases'
+    }
+}
+
+shadowJar {
+    classifier null
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'de.redgames.somebot.Main'
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "net.dv8tion:JDA:4.2.1_253"
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+    }
+}
