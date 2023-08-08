@@ -22,19 +22,19 @@ kotlin {
 
 docker {
     javaApplication {
-        baseImage.set("eclipse-temurin:17-jre")
-        maintainer.set("RedGames")
-        ports.set(emptyList())
-        images.set(setOf(
+        baseImage = "eclipse-temurin:17-jre"
+        maintainer = "RedGames"
+        ports = emptyList()
+        images = setOf(
             "registry.redgames.de/somebot:$version",
             "registry.redgames.de/somebot:latest"
-        ))
+        )
     }
 
     registryCredentials {
-        url.set("https://registry.redgames.de/")
-        username.set(providers.environmentVariable("REDGAMES_REGISTRY_USERNAME"))
-        password.set(providers.environmentVariable("REDGAMES_REGISTRY_PASSWORD"))
+        url = "https://registry.redgames.de/"
+        username = providers.environmentVariable("REDGAMES_REGISTRY_USERNAME")
+        password = providers.environmentVariable("REDGAMES_REGISTRY_PASSWORD")
     }
 }
 
