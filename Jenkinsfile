@@ -10,7 +10,7 @@ pipeline {
             steps {
                 withGradle {
                     withCredentials([usernamePassword(
-                        credentialsId: 'slimenexus-repo-minetown',
+                        credentialsId: 'slimenexus-repo-slime',
                         usernameVariable: 'SLIMENEXUS_REGISTRY_USERNAME',
                         passwordVariable: 'SLIMENEXUS_REGISTRY_PASSWORD'
                     )]) {
