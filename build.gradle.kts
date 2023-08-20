@@ -4,16 +4,15 @@ plugins {
     id("com.bmuschko.docker-java-application") version "9.3.2"
 }
 
-group = "de.redgames"
-version = "1.1"
+group = "nexus.slime"
+version = "1.2"
 
 repositories {
     mavenCentral()
-    maven("https://m2.dv8tion.net/releases")
 }
 
 dependencies {
-    implementation("net.dv8tion:JDA:5.0.0-beta.12")
+    implementation("net.dv8tion:JDA:5.0.0-beta.13")
 }
 
 kotlin {
@@ -23,25 +22,25 @@ kotlin {
 docker {
     javaApplication {
         baseImage = "eclipse-temurin:17-jre"
-        maintainer = "RedGames"
+        maintainer = "Slime Nexus"
         ports = emptyList()
         images = setOf(
-            "registry.redgames.de/somebot:$version",
-            "registry.redgames.de/somebot:latest"
+            "registry.slime.nexus/somebot:$version",
+            "registry.slime.nexus/somebot:latest"
         )
     }
 
     registryCredentials {
-        url = "https://registry.redgames.de/"
-        username = providers.environmentVariable("REDGAMES_REGISTRY_USERNAME")
-        password = providers.environmentVariable("REDGAMES_REGISTRY_PASSWORD")
+        url = "https://registry.slime.nexus/"
+        username = providers.environmentVariable("SLIMENEXUS_REGISTRY_USERNAME")
+        password = providers.environmentVariable("SLIMENEXUS_REGISTRY_PASSWORD")
     }
 }
 
 tasks {
     jar {
         manifest {
-            attributes("Main-Class" to "de.redgames.somebot.Main")
+            attributes("Main-Class" to "nexus.slime.somebot.Main")
         }
     }
 }

@@ -1,4 +1,4 @@
-package de.redgames.somebot
+package nexus.slime.somebot
 
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.OnlineStatus
